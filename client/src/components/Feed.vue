@@ -1,7 +1,7 @@
  <template>
   <div class="feed">
     <div class="scroll-feed">
-      <FeedCard v-for="post in posts" :key="post.id" :photo="post" />
+      <FeedCard v-for="post in posts" :key="post.id" :caption="post.caption" :image="post.image" :likes="post.likes" :user_id="post.user_id"/>
     </div>
   </div>
 </template>
@@ -15,15 +15,21 @@ export default {
   components: {FeedCard},
   data: () => ({
     posts: [],
+    error: null
   }),
   mounted: function () {
     this.getPosts()
   },
   methods: {
     async getPosts() {
+      try {
       const res = await axios.get(`${BASE_URL}/posts`)
       this.posts = (res.data)
       console.log(res.data)
+      } catch (error) {
+        console.log(error)
+        this.error = error
+      }
     }
 
   }
