@@ -6,17 +6,20 @@
       :usernameMessage="usernameMessage"
       :isError="isError"
     />
+    <Feed />
     <!-- <Messages v-else :user="user" @clearUser="clearUser" /> feed will do here -->
   </div>
 </template>
 
 <script>
 import Login from './components/Login.vue'
+import Feed from './components/Feed.vue'
 
 export default {
   name: 'App',
   components: {
     Login,
+    Feed
   },
   data: () => ({
     username: '', 
