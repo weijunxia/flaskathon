@@ -10,7 +10,7 @@
           @input="enterUsername"
         />
 
-        <button type="submit" @click="logfToFeed">
+        <button type="submit" @click="logfToFeed()">
           Login
         </button>
       </form>

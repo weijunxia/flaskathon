@@ -1,12 +1,14 @@
 <template>
   <div class="feed_card">
     <div class="card_image">
-
+      <img :src="image"/>
     </div>
     <div class="card_likes">
+      <p>❤️ {{likes}} likes</p>
     </div>
     <div class="card_caption">
-
+      <p class="user_name">{{user_id}}</p>
+      <p>{{caption}}</p>
     </div>
   </div>
 
@@ -15,10 +17,7 @@
 <script>
 export default {
   name: 'FeedCard',
-  props: {},
-  methods: {
-    
-  }
+  props: ['caption', 'image', 'likes', 'user_id']
 }
 </script>
 
