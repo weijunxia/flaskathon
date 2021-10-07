@@ -1,17 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Login
+      v-if="!user"
+      @handleUsername="handleUsername"
+      @submitUsername="submitUsername"
+      :username="username"
+      :usernameMessage="usernameMessage"
+      :isError="isError"
+    />
+    <!-- <Messages v-else :user="user" @clearUser="clearUser" /> feed will do here -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Login from './components/Login.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Login
   }
 }
 </script>
