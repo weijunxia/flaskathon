@@ -8,18 +8,24 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
     username = db.Column(db.String(80), nullable=False, unique=True)
+    password_digest = db.Column(db.String(255), nullable=False)
     created_at = db.Column(
         db.DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow(
+    ), nullable=False, onupdate=datetime.utcnow)
 
     posts = db.relationship('Post', cascade='all',
                             backref=db.backref('posts', lazy=True))
 
-    def __init__(self, username):
+    def __init__(self, name, username, password_digest):
+        self.name = name
         self.username = username
+        self.password_digest = password_digest
 
     def json(self):
-        return {'id': self.id, 'username': self.username, 'created_at': str(self.created_at)}
+        return {'id': self.id, "name": self.name, 'username': self.username, "password_digest": self.password_digest, 'created_at': str(self.created_at), "updated_at": str(self.updated_at)}
 
     def create(self):
         db.session.add(self)
