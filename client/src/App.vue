@@ -20,7 +20,6 @@ export default {
   },
   data: () => ({
     username: '', 
-    // user: JSON.parse(localStorage.getItem('user')) || null,
     usernameMessage: '',
     isError: false
   }),
