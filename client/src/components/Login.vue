@@ -10,7 +10,7 @@
           @input="enterUsername"
         />
 
-        <button type="submit" @click="logfToFeed()">
+        <button type="submit">
           Login
         </button>
       </form>
@@ -44,6 +44,7 @@ export default {
     },
     submitUsername() {
       this.$emit('submitUsername')
+      this.$router.push('/feed')
     },
     logfToFeed() {
       this.$router.push('/feed')
