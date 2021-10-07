@@ -18,10 +18,10 @@ app.config['SQLALCHEMY_ECHO'] = True
 db.init_app(app)
 migrate = Migrate(app, db)
 
-app.add_resource(Users, '/users')
+api.add_resource(Users, '/users')
 
-app.add_resource(Posts, '/posts')
-app.add_resource(PostDetails, '/posts/<int:id>')
+api.add_resource(Posts, '/posts')
+api.add_resource(PostDetails, '/posts/<int:id>')
 
 
 if __name__ == '__main__':
