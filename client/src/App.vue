@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Login 
+      @handleUsername="handleUsername"
       :username="username"
       :usernameMessage="usernameMessage"
       :isError="isError"
@@ -24,7 +25,7 @@ export default {
     isError: false
   }),
   methods: {
-    async handleUsername(value) {
+    handleUsername(value) {
       this.username = value
     }
   }
