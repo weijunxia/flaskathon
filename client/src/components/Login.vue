@@ -7,7 +7,7 @@
           type="text"
           :value="username"
           placeholder="Enter Username"
-          
+          @input="enterUsername"
         />
 
         <button type="submit">
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     enterUsername(e) {
-      this.$emit('handleUsername', e.target.value, e.keyCode)
+      this.$emit('handleUsername', e.target.value)
     },
     submitUsername() {
       this.$emit('submitUsername')
