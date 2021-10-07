@@ -1,39 +1,31 @@
  <template>
   <div class="feed">
     <div class="scroll-feed">
-      <FeedCard v-for="image in stockImages" :key="image.id" :photo="image" />
-    </div>
-    <div class="item-view" v-if="selectedImage">
-      <DetailView :photo="selectedImage"/>
-    </div>
-    <div class="item-view" v-else>
-      <div>
-        <img src="../assets/logo.png" />
-      </div>
-      <h3>No Photo Selected</h3>
+      <FeedCard v-for="post in posts" :key="post.id" :photo="post" />
     </div>
   </div>
 </template>
 <script>
+import axios from 'axios'
+import {BASE_URL} from '../globals'
 import FeedCard from './FeedCard.vue'
 
 export default {
   name: 'Feed',
   components: {FeedCard},
   data: () => ({
-    images: [],
-    selectedImage: null,
+    posts: [],
   }),
   mounted: function () {
-    this.getImages()
+    this.getPosts()
   },
   methods: {
-    async getImages() {
-      this.images = (res.data)
-      console.log(res.data[0].user.username)
-    },
-    async selectPhoto(photoId) {    
+    async getPosts() {
+      const res = await axios.get(`${BASE_URL}/posts`)
+      this.posts = (res.data)
+      console.log(res.data)
     }
+
   }
 }
 </script>
