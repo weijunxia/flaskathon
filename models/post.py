@@ -35,6 +35,6 @@ class Post(db.Model):
         return [p.json() for p in posts]
 
     @classmethod
-    def find_by_id(cls, id):
-        post = Post.query.filter_by(id=id).first()
+    def find_by_id(cls, post_id):
+        post = Post.query.filter_by(id=post_id).first()
         return post
