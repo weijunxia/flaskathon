@@ -21,7 +21,7 @@ export default {
   name: 'Feed',
   components: {FeedCard},
   data: () => ({
-    stockImages: [],
+    images: [],
     selectedImage: null,
   }),
   mounted: function () {
@@ -29,12 +29,10 @@ export default {
   },
   methods: {
     async getImages() {
-      const res = await axios.get(`${BASE_URL}/photos?client_id=${API_KEY}`)
-      this.stockImages = (res.data)
+      this.images = (res.data)
       console.log(res.data[0].user.username)
     },
-    async selectPhoto(photoId) {
-      const res = await axios.get(`${BASE_URL}/photos/${photoId}??client_id=${API_KEY}`)
+    async selectPhoto(photoId) {    
     }
   }
 }
