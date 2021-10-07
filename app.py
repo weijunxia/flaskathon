@@ -21,7 +21,7 @@ migrate = Migrate(app, db)
 api.add_resource(Users, '/users')
 
 api.add_resource(Posts, '/posts')
-api.add_resource(PostDetails, '/posts/<int:id>')
+api.add_resource(PostDetails, '/posts/<int:post_id>')
 
 
 if __name__ == '__main__':

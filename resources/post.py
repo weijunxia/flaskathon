@@ -29,13 +29,14 @@ class PostDetails(Resource):
     def put(self, post_id):
         data = request.get_json()
         post = Post.find_by_id(post_id)
-        for k in data.keys():
-            post[k] = data[k]
+        for key in data:
+            setattr(post, key, data[key])
         db.session.commit()
         return post.json()
 
     def delete(self, post_id):
-        post = Post.find_by_id()
+        print(post_id)
+        post = Post.find_by_id(post_id)
         if not post:
             return {"Message": "Not Found"}, 404
         db.session.delete(post)

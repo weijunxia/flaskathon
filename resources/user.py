@@ -28,8 +28,8 @@ class UserDetail(Resource):
     def put(self, user_id):
         data = request.get_json()
         user = User.find_by_id(user_id)
-        for k in data.keys():
-            user[k] = data[k]
+        for key in data:
+            setattr(user, key, data[key])
         db.session.commit()
         return user.json()
 
