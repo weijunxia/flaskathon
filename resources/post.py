@@ -1,6 +1,4 @@
-# Load Resources
 from models.db import db
-from models.user import *
 from models.post import *
 from flask_restful import Resource
 from flask import request
@@ -25,7 +23,7 @@ class Posts(Resource):
 class PostDetails(Resource):
     def get(self, post_id):
         post = Post.query.options(joinedload(
-            'user')).filter_by(id=post_id).first()
+            "user")).filter_by(id=post_id).first()
         return {**post.json(), "user": post.user.json()}
 
     def put(self, post_id):
