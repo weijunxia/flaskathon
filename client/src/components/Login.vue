@@ -44,7 +44,7 @@ export default {
     },
     submitUsername() {
       this.$emit('submitUsername')
-      this.$router.push('/feed')
+
     },
     logfToFeed() {
       this.$router.push('/feed')
