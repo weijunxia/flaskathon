@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <Login 
+      v-if="!user"
       @handleUsername="handleUsername"
+      @submitUsername="submitUsername"
       :username="username"
       :usernameMessage="usernameMessage"
       :isError="isError"
     />
-    <Feed />
+    <Feed v-else :user="user" @clearUser="clearUser"/>
     <!-- <Messages v-else :user="user" @clearUser="clearUser" /> feed will do here -->
   </div>
 </template>
@@ -14,6 +16,7 @@
 <script>
 import Login from './components/Login.vue'
 import Feed from './components/Feed.vue'
+import {CreateUser, RemoveUser} from './services/users'
 
 export default {
   name: 'App',
@@ -23,12 +26,26 @@ export default {
   },
   data: () => ({
     username: '', 
+    user: JSON.parse(localStorage.getItem('user')) || null,
     usernameMessage: '',
     isError: false
   }),
   methods: {
     handleUsername(value) {
       this.username = value
+    },
+    async submitUsername() {
+      const user = await CreateUser(this.username)
+      localStorage.setItem('user', JSON.stringify(user))
+      this.user = user
+      this.usernameMessage = ''
+      this.isError = false
+    },
+    async clearUser() {
+      await RemoveUser(this.user.id)
+      localStorage.clear()
+      this.user = null
+      this.username = ''
     }
   }
 }
