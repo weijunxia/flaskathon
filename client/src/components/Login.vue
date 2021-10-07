@@ -7,11 +7,11 @@
           type="text"
           :value="username"
           placeholder="Enter Username"
-          @keyup="enterUsername"
+          
         />
 
-        <button type="submit" :disabled="!username || isError">
-          Create Profile
+        <button type="submit">
+          Login
         </button>
       </form>
       <h4 :class="isError ? 'bold red' : 'bold green'">
@@ -39,12 +39,12 @@ export default {
     }
   },
   methods: {
-    // enterUsername(e) {
-    //   this.$emit('handleUsername', e.target.value, e.keyCode)
-    // },
-    // submitUsername() {
-    //   this.$emit('submitUsername')
-    // }
+    enterUsername(e) {
+      this.$emit('handleUsername', e.target.value, e.keyCode)
+    },
+    submitUsername() {
+      this.$emit('submitUsername')
+    }
   }
 }
 </script>
