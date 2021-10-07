@@ -39,12 +39,12 @@ export default {
     }
   },
   methods: {
-    enterUsername(e) {
-      this.$emit('handleUsername', e.target.value, e.keyCode)
-    },
-    submitUsername() {
-      this.$emit('submitUsername')
-    }
+    // enterUsername(e) {
+    //   this.$emit('handleUsername', e.target.value, e.keyCode)
+    // },
+    // submitUsername() {
+    //   this.$emit('submitUsername')
+    // }
   }
 }
 </script>

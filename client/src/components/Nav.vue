@@ -1,7 +1,7 @@
 <template>
   <header class="title">
     <h3>{{ username }}</h3>
-    <button @click="logOut">Log Out</button>
+    <button>Log Out</button>
   </header>
 </template>
 
@@ -15,9 +15,9 @@ export default {
     }
   },
   methods: {
-    logOut() {
-      this.$emit('clearUser')
-    }
+    // logOut() {
+    //   this.$emit('clearUser')
+    // }
   }
 }
 </script>
