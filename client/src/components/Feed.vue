@@ -27,7 +27,8 @@ export default {
   name: 'Feed',
   components: {
     FeedCard,
-    FeedForm
+    FeedForm,
+    Nav
   },
   props: ['user'],
 
