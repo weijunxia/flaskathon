@@ -21,7 +21,7 @@ import Login from './components/Login.vue'
 import Feed from './components/Feed.vue'
 import Nav from './components/Nav.vue'
 
-import {CreateUser, RemoveUser} from './services/users'
+import {CreateUser} from './services/users'
 
 export default {
   name: 'App',
@@ -48,7 +48,6 @@ export default {
       this.isError = false
     },
     async clearUser() {
-      await RemoveUser(this.user.id)
       localStorage.clear()
       this.user = null
       this.username = ''
