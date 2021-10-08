@@ -16,8 +16,7 @@ export default {
   },
   methods: {
     logOut() {
-      this.username.push('')
-      this.$router.push('/')
+     this.$emit('clearUser')
     }
   }
 }

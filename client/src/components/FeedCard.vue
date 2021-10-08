@@ -2,12 +2,13 @@
   <div class="feed_card">
     <div class="card_image">
       <img :src="image"/>
+      <button @click="deletePost(post_id)">X</button>
     </div>
     <div class="card_likes">
       <p>❤️ {{likes}} likes</p>
     </div>
     <div class="card_caption">
-      <p class="user_name">{{user_id}}</p>
+      <p class="user_name">{{userIdToUserName(user_id)}}</p>
       <p>{{caption}}</p>
     </div>
   </div>
@@ -15,9 +16,24 @@
 </template>
 
 <script>
+import {FindUserById} from '../services/users'
+import {DeletePost} from '../services/posts'
+
 export default {
   name: 'FeedCard',
-  props: ['caption', 'image', 'likes', 'user_id']
+  props: ['caption', 'image', 'likes', 'user_id', 'user', 'post_id', 'getUserData'],
+  
+  methods: {
+    userIdToUserName(id){
+      const res =  FindUserById(id)
+      console.log('userIdToUserName', res.username)
+      return res.username
+    },
+    async deletePost(post_id){
+      const res = await DeletePost(post_id)
+      return res
+    }
+  }
 }
 </script>
 
