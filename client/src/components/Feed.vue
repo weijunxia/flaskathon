@@ -1,5 +1,8 @@
  <template>
   <div class="feed">
+    <div>
+      <FeedForm :user="user"/>
+    </div>
     <div class="scroll-feed">
       <FeedCard v-for="post in posts" :key="post.id" :caption="post.caption" :image="post.image" :likes="post.likes" :user_id="post.user_id"/>
     </div>
@@ -9,10 +12,14 @@
 import axios from 'axios'
 import {BASE_URL} from '../globals'
 import FeedCard from './FeedCard.vue'
-
+import FeedForm from './FeedForm.vue'
 export default {
   name: 'Feed',
-  components: {FeedCard},
+  components: {
+    FeedCard,
+    FeedForm
+  },
+  props: ['user'],
   data: () => ({
     posts: [],
     error: null
