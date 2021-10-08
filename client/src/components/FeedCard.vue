@@ -44,6 +44,8 @@ export default {
 </script>
 
 <style>
+
+
 .feed_card {
   border: 1px solid;
   border-radius: 8px;
@@ -57,8 +59,12 @@ export default {
   opacity: .8;
 }
 
-.card_image {
-  border-radius: 50%;
+.card_image img{
+  width:  100%;
+  height: 35em;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+  /* border-radius: 50%; */
 }
 
 
