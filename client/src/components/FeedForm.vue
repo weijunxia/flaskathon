@@ -2,18 +2,18 @@
     <div>
         <form>
             <input
-            :class="isError ? 'error' : 'success'"
+            name="caption"
             type="text"
-            :value="URL"
-            placeholder="Enter URL"
-            @input="enterUsername"
+            :value="caption"
+            placeholder="Enter Caption"
+            @input="handleForm"
             />
         <input
-            :class="isError ? 'error' : 'success'"
+            name="image"
             type="text"
-            :value="comment"
-            placeholder="Enter Comment"
-            @input="enterUsername"
+            :value="image"
+            placeholder="Enter Image"
+            @input="handleForm"
             />
             <button type="submit">
             Blog
@@ -24,7 +24,22 @@
 
 <script>
 export default {
-    name:"FeedForm"
+    name:"FeedForm",
+    data: () => ({
+        caption:'',
+        image:''
+    }),
+    methods:{
+        handleForm(e) {
+            // console.log(e.target.value)
+            if (e.target.name === "caption"){
+                this.caption = e.target.value
+            } else {
+                this.image = e.target.value
+            }
+            
+        }
+    }
 }
 </script>
 
