@@ -46,10 +46,9 @@ export default {
             
         },
         async handleSubmit() {
-            const feedData = await CreatePost({'user_id':this.user.id, 'caption':this.caption, 'image':this.image, 'likes':this.likes})
-            this.$forceUpdate()
-            return feedData
-            
+            const feedData = await CreatePost({'username':this.user.username, 'caption':this.caption, 'image':this.image, 'likes':this.likes})
+            this.$emit('getPosts')
+            return feedData   
         }
     }
 }
