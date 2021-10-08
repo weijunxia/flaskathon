@@ -1,12 +1,13 @@
 <template>
-    <div>
-        <form @submit.prevent="handleSubmit">
+    <div class='feed_form'>
+        <form @submit.prevent="handleSubmit" class="feed_form_form">
             <input 
             name="caption"
             type="text"
             :value="caption"
             placeholder="Enter Caption"
             @input="handleForm"
+            class="feed_form_input"
             />
         <input
             name="image"
@@ -14,8 +15,9 @@
             :value="image"
             placeholder="Enter Image"
             @input="handleForm"
+            class="feed_form_input"
             />
-            <button type="submit">
+            <button type="submit" class="feed_form_button">
             Blog
             </button>
         </form>
