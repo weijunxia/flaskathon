@@ -15,10 +15,11 @@ def create_token(payload):
 def read_token(token):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        return {'data': True, "payload": payload}
     except jwt.InvalidSignatureError:
-        return "Signature Invalid"
+        return {'data': False, "payload": {'msg': "Unauthorized", 'error': 404}}
     except jwt.InvalidTokenError:
-        return "Token Invalid"
+        return {'data': False, "payload": {'msg': "Unauthorized", 'error': 404}}
 
 
 def gen_password(password):

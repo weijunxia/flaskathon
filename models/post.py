@@ -36,6 +36,11 @@ class Post(db.Model):
         return [p.json() for p in posts]
 
     @classmethod
+    def find_by_username(cls, username):
+        posts = Post.query.filter_by(username=username).all()
+        return [post.json() for post in posts]
+
+    @classmethod
     def find_by_id(cls, post_id):
         post = Post.query.filter_by(id=post_id).first()
         return post

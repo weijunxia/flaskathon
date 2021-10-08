@@ -8,9 +8,8 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    # name = db.Column(db.String, nullable=False)
     username = db.Column(db.String(80), nullable=False, unique=True)
-    # password_digest = db.Column(db.String(255), nullable=False)
+    password_digest = db.Column(db.String(255), nullable=False)
     created_at = db.Column(
         db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
@@ -18,16 +17,13 @@ class User(db.Model):
 
     posts = db.relationship('Post', cascade='all',
                             backref=db.backref('posts', lazy=True))
-    # name, password_digest
 
-    def __init__(self, username):
-        # self.name = name
+    def __init__(self, username, password_digest):
         self.username = username
-        # self.password_digest = password_digest
-    # 'username': self.username, "password_digest": self.password_digest,
+        self.password_digest = password_digest
 
     def json(self):
-        return {'id': self.id, "username": self.username, 'created_at': str(self.created_at), "updated_at": str(self.updated_at)}
+        return {'id': self.id, "username": self.username, "password_digest": self.password_digest, 'created_at': str(self.created_at), "updated_at": str(self.updated_at)}
 
     def create(self):
         db.session.add(self)
@@ -41,6 +37,11 @@ class User(db.Model):
     @classmethod
     def find_by_id(cls, user_id):
         user = User.query.filter_by(id=user_id).first()
+        return user
+
+    @classmethod
+    def find_by_username(cls, username):
+        user = User.query.filter_by(username=username).first()
         return user
 
 

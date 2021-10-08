@@ -1,8 +1,8 @@
 <template>
-<div class="modal">
+  <div class="modal">    
     <div class="content-wrapper">
-      <h1>Login</h1>
-      <form @submit.prevent="signInAccount">
+      <h1>Register</h1>
+      <form @submit.prevent="createAccount">
         <input
           :class="isError ? 'error' : 'success'"
           type="text"
@@ -20,7 +20,7 @@
         />
 
         <button type="submit">
-          Login
+          Register
         </button>
       </form>
       <h4 :class="isError ? 'bold red' : 'bold green'">
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Register',
   props: ['username', 'password', 'usernameMessage', 'isError'],
   methods: {
     enterUsername(e) {
@@ -41,8 +41,8 @@ export default {
     enterPassword(e){
       this.$emit('handlePassword', e.target.value)
     },
-    signInAccount(){
-      this.$emit('signInAccount', this.username, this.password)
+    createAccount(){
+      this.$emit('createAccount', this.username, this.password)
     }
     
   }
