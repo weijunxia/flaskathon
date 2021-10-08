@@ -7,7 +7,7 @@
       <p class="likes">❤️ {{likes}} likes</p>
     </div>
     <div class="card_caption">
-      <p class="user_name">{{post_username}}:</p>
+      <p class="user_name"><b>By {{post_username}}:</b></p>
       <p class="caption">{{caption}}</p>
       <button class="del_btn" @click="deletePost(post_id)">Delete Post</button>
     </div>
@@ -55,6 +55,7 @@ export default {
   cursor: pointer;
   box-shadow: 7px 10px 24px 0px rgba(0, 0, 0, 0.39);
   transition: all .2s ease;
+  
 }
 
 .feed_card:hover{
