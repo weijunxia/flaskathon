@@ -21,7 +21,6 @@ class UserDetail(Resource):
     def get(self, user_id):
         user = User.query.options(joinedload(
             'posts')).filter_by(id=user_id).first()
-        print(user.posts)
         posts = [m.json() for m in user.posts]
         return {**user.json(), 'posts': posts}
 

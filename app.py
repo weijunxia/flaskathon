@@ -8,7 +8,7 @@ from models.post import Post
 from resources.user import Users, UserDetail
 from resources.post import Posts, PostDetails
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True)
 
 api = Api(app)
 
