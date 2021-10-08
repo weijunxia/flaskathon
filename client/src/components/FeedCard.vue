@@ -40,6 +40,7 @@ export default {
 <style>
 
 
+
 .feed_card {
   border: 1px solid;
   border-radius: 8px;
