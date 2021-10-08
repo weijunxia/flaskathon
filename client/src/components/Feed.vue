@@ -1,7 +1,7 @@
  <template>
   <div class="feed">
     <div>
-      <FeedForm />
+      <FeedForm :user="user"/>
     </div>
     <div class="scroll-feed">
       <FeedCard v-for="post in posts" :key="post.id" :caption="post.caption" :image="post.image" :likes="post.likes" :user_id="post.user_id"/>
@@ -19,6 +19,7 @@ export default {
     FeedCard,
     FeedForm
   },
+  props: ['user'],
   data: () => ({
     posts: [],
     error: null
