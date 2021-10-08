@@ -1,6 +1,6 @@
 <template>
   <header class="title">
-    <h3>{{ username }}</h3>
+    <h3 class="user">{{ username }}</h3>
     <button @click="logOut" >Log Out</button>
   </header>
 </template>
@@ -16,19 +16,30 @@ export default {
   },
   methods: {
     logOut() {
-     this.$emit('clearUser')
+      this.$emit('clearUser')
     }
   }
 }
 </script>
 
 <style scoped>
+body{
+  background: cornsilk;
+}
+
 .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: #02a9f4;
+  background: linear-gradient(45deg,
+        rgb(255, 253, 135),
+        rgb(201, 199, 110), 
+        rgb(219, 167, 248),
+        rgb(197, 90, 255), 
+        rgb(166, 0, 255)
+  );
+
   height: 4em;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
   position: fixed;
@@ -42,7 +53,8 @@ h3 {
 button {
   margin-right: 1em;
   padding: 0.6em 1.2em;
-  background-color: #e57373;
+  background-color: white;
+  color: rgb(219, 167, 248);
   border: 0;
   border-radius: 6px;
   font-weight: 600;
@@ -52,5 +64,9 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+
+.user{
+  color: rgb(166, 0, 255)
 }
 </style>
