@@ -58,7 +58,9 @@ export default {
 </script>
 
 <style>
-
+body{
+  background: rgb(252, 247, 229);
+}
 .nav_bar{
   position: fixed;
   top: 0;
