@@ -1,25 +1,18 @@
- <template>
+<template>
   <div class="feed">
-
-      <div>
-
-      <Nav />
-      </div>
-
-    <div>
+    <div class="feed_form">
       <FeedForm :user="user"/>
     </div>
-
     <div class="scroll-feed">
-      <FeedCard v-for="post in posts" :key="post.id" :caption="post.caption" :image="post.image" :likes="post.likes" :user_id="post.user_id"/>
+      <FeedCard v-for="post in posts" :key="post.id" :caption="post.caption" :image="post.image" :likes="post.likes" :user_id="post.user_id" :user="user" :getUserData='getUserData' :post_id="post.id"/>
     </div>
   </div>
 </template>
 <script>
-import axios from 'axios'
-import {BASE_URL} from '../globals'
+
+import {GetPosts} from '../services/posts'
+import {FindUserById} from '../services/users'
 import FeedCard from './FeedCard.vue'
-import Nav from '../components/Nav.vue'
 import FeedForm from './FeedForm.vue'
 
 
@@ -42,13 +35,17 @@ export default {
   methods: {
     async getPosts() {
       try {
-      const res = await axios.get(`${BASE_URL}/posts`)
-      this.posts = (res.data)
-      console.log(res.data)
+        const res = await GetPosts()
+        this.posts = (res)
       } catch (error) {
         console.log(error)
         this.error = error
       }
+    },
+    async getUserData(id) {
+      const res = await FindUserById(id)
+      console.log('getUserData', res.username)
+      return res.username
     }
 
   }
@@ -57,6 +54,10 @@ export default {
 <style>
 .feed {
   display: flex;
+  margin-top: 60px;
+}
+.feed_form {
+  margin-top: 10px;
 }
 .scroll-feed {
   flex: 1;

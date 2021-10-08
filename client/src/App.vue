@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div class="nav_bar" v-if="user">
+      <Nav :username="user.username" @clearUser="clearUser"/>
+    </div>
     <Login 
       v-if="!user"
       @handleUsername="handleUsername"
@@ -14,16 +17,18 @@
 </template>
 
 <script>
-
 import Login from './components/Login.vue'
 import Feed from './components/Feed.vue'
+import Nav from './components/Nav.vue'
+
 import {CreateUser, RemoveUser} from './services/users'
 
 export default {
   name: 'App',
   components: {
     Login,
-    Feed
+    Feed,
+    Nav
   },
   data: () => ({
     username: '', 
@@ -53,12 +58,13 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+.nav_bar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+
 }
 </style>
