@@ -20,8 +20,7 @@ export default {
   name: 'Feed',
   components: {
     FeedCard,
-    FeedForm,
-    Nav
+    FeedForm
   },
   props: ['user'],
 
@@ -57,6 +56,8 @@ export default {
   margin-top: 60px;
 }
 .feed_form {
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
 }
 .scroll-feed {
