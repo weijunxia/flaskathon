@@ -1,10 +1,10 @@
 <template>
   <div class="feed">
     <div class="feed_form">
-      <FeedForm :user="user"/>
+      <FeedForm :user="user" @getPosts="getPosts"/>
     </div>
     <div class="scroll-feed">
-      <FeedCard v-for="post in posts" :key="post.id" :caption="post.caption" :image="post.image" :likes="post.likes" :user_id="post.user_id" :user="user" :getUserData='getUserData' :post_id="post.id"/>
+      <FeedCard v-for="post in posts" :key="post.id" :caption="post.caption" :image="post.image" :likes="post.likes" :post_username="post.username" :user="user" :getUserData='getUserData' :post_id="post.id" @getPosts="getPosts"/>
     </div>
   </div>
 </template>

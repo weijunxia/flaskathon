@@ -8,7 +8,7 @@
       <p>❤️ {{likes}} likes</p>
     </div>
     <div class="card_caption">
-      <p class="user_name">{{userIdToUserName(user_id)}}</p>
+      <p class="user_name">{{post_username}}</p>
       <p>{{caption}}</p>
     </div>
   </div>
@@ -21,17 +21,23 @@ import {DeletePost} from '../services/posts'
 
 export default {
   name: 'FeedCard',
-  props: ['caption', 'image', 'likes', 'user_id', 'user', 'post_id', 'getUserData'],
-  
+  props: ['caption', 'image', 'likes', 'post_username', 'user', 'post_id', 'getPosts'],
+  data: ()=>({
+    users_post_id: []
+  }),
   methods: {
-    userIdToUserName(id){
-      const res =  FindUserById(id)
-      console.log('userIdToUserName', res.username)
+    async userIdToUserName(id){
+      const res =  await FindUserById(id)
+      // this.users_post_id = res.username
+      console.log(res)
       return res.username
     },
     async deletePost(post_id){
-      const res = await DeletePost(post_id)
-      return res
+      if (this.user.username === this.post_username) {
+        const res = await DeletePost(post_id)
+        this.$emit('getPosts')
+        return res
+      }
     }
   }
 }

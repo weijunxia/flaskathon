@@ -11,18 +11,19 @@ class Post(db.Model):
     likes = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    username = db.Column(db.String(80), db.ForeignKey(
+        'users.username'), nullable=False)
 
     user = db.relationship('User', backref=db.backref('users', lazy=True))
 
-    def __init__(self, caption, image, likes, user_id):
+    def __init__(self, caption, image, likes, username):
         self.caption = caption
         self.image = image
         self.likes = likes
-        self.user_id = user_id
+        self.username = username
 
     def json(self):
-        return {"id": self.id, "caption": self.caption, "image": self.image, "likes": self.likes, "user_id": self.user_id, "created_at": str(self.created_at)}
+        return {"id": self.id, "caption": self.caption, "image": self.image, "likes": self.likes, "username": self.username, "created_at": str(self.created_at)}
 
     def create(self):
         db.session.add(self)
