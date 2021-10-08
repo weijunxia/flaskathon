@@ -1,8 +1,8 @@
 <template>
-<div class="modal">
+  <div class="modal">    
     <div class="content-wrapper">
-      <h1>Login</h1>
-      <form @submit.prevent="signInAccount">
+      <h1>Register</h1>
+      <form @submit.prevent="createAccount">
         <input
           :class="isError ? 'error' : 'success'"
           type="text"
@@ -20,7 +20,7 @@
         />
 
         <button type="submit">
-          Login
+          Register
         </button>
       </form>
       <h4 :class="isError ? 'bold red' : 'bold green'">
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Register',
   props: ['username', 'password', 'usernameMessage', 'isError'],
   methods: {
     enterUsername(e) {
@@ -41,8 +41,8 @@ export default {
     enterPassword(e){
       this.$emit('handlePassword', e.target.value)
     },
-    signInAccount(){
-      this.$emit('signInAccount', this.username, this.password)
+    createAccount(){
+      this.$emit('createAccount', this.username, this.password)
     }
     
   }
@@ -65,13 +65,7 @@ export default {
   border-radius: 6px;
   border: 2px solid;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(45deg,
-        rgb(255, 253, 135),
-        rgb(201, 199, 110), 
-        rgb(219, 167, 248),
-        rgb(197, 90, 255), 
-        rgb(166, 0, 255)
-  );
+  background-color: #fafafa;
 }
 
 .content-wrapper,
@@ -87,15 +81,10 @@ form {
 
 input,
 button {
-  margin-right: 1em;
-  padding: 0.6em 1.2em;
-  background-color: white;
-  color: rgb(219, 167, 248);
-  border: 0;
+  padding: 0.5em 1.2em;
   border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
 }
 
 .error {
@@ -103,7 +92,7 @@ button {
 }
 
 .success {
-  border-color: rgb(219, 167, 248);;
+  border-color: #a5d6a7;
 }
 
 input {
@@ -117,7 +106,7 @@ button {
 }
 
 button:not(:disabled) {
-  background-color: white;
+  background-color: #64b5f6;
 }
 
 h4 {

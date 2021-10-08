@@ -3,35 +3,49 @@
     <div class="nav_bar" v-if="user">
       <Nav :username="user.username" @clearUser="clearUser"/>
     </div>
-    <Login 
+    <Register 
       v-if="!user"
+      @createAccount="createAccount"
       @handleUsername="handleUsername"
-      @submitUsername="submitUsername"
+      @handlePassword="handlePassword"
+      :user='user'
       :username="username"
+      :password='password'
       :usernameMessage="usernameMessage"
       :isError="isError"
     />
-    <Feed v-else :user="user" @clearUser="clearUser"/>
-    <!-- <Messages v-else :user="user" @clearUser="clearUser" /> feed will do here -->
+    <Feed v-else  :user="user" @clearUser="clearUser"/>
+    <Login 
+      @signInAccount="signInAccount"
+      @handleUsername="handleUsername"
+      @handlePassword="handlePassword"
+      :user='user'
+      :username="username"
+      :password='password'
+      :usernameMessage="usernameMessage"
+      :isError="isError"
+    />
   </div>
 </template>
 
 <script>
-import Login from './components/Login.vue'
+import Register from './components/Register.vue'
 import Feed from './components/Feed.vue'
 import Nav from './components/Nav.vue'
-
-import {CreateUser} from './services/users'
+import Login from './components/Login.vue'
+import {RegisterUser, LoginUser} from './services/users'
 
 export default {
   name: 'App',
   components: {
-    Login,
+    Register,
     Feed,
-    Nav
+    Nav,
+    Login
   },
   data: () => ({
     username: '', 
+    password: '',
     user: JSON.parse(localStorage.getItem('user')) || null,
     usernameMessage: '',
     isError: false
@@ -40,15 +54,34 @@ export default {
     handleUsername(value) {
       this.username = value
     },
-    async submitUsername() {
-      const user = await CreateUser(this.username)
-      localStorage.setItem('user', JSON.stringify(user))
-      this.user = user
-      this.usernameMessage = ''
-      this.isError = false
+    handlePassword(value){
+      this.password = value
+    },
+    async createAccount() {
+      try {
+        const user = await RegisterUser(this.username, this.password)
+        localStorage.setItem('user', JSON.stringify(user))
+        this.user = user
+        this.usernameMessage = ''
+        this.isError = false
+        
+      } catch (error) {
+        alert('Error: ', error)
+      }
+    },
+    async signInAccount(){
+      try {
+        const login = await LoginUser(this.username, this.password)
+        console.log(login)
+        localStorage.setItem('user', JSON.stringify(login))
+        this.user = login
+        this.usernameMessage = ''
+        this.isError = false
+      } catch (error) {
+        alert('Error: ', error)
+      }
     },
     async clearUser() {
-      localStorage.clear()
       this.user = null
       this.username = ''
     }

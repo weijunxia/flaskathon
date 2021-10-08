@@ -1,7 +1,18 @@
 import Client from './api'
 
-export const CreateUser = async username => {
-  const res = await Client.post('/users', { username })
+export const RegisterUser = async (username, password) => {
+  const res = await Client.post('/users/register', {
+    username,
+    password
+  })
+  return res.data
+}
+
+export const LoginUser = async (username, password) => {
+  const res = await Client.post('/users/login', {
+    username,
+    password
+  })
   return res.data
 }
 
