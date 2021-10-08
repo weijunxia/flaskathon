@@ -69,7 +69,13 @@ export default {
   border-radius: 6px;
   border: 2px solid;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  background-color: #fafafa;
+  background: linear-gradient(45deg,
+        rgb(255, 253, 135),
+        rgb(201, 199, 110), 
+        rgb(219, 167, 248),
+        rgb(197, 90, 255), 
+        rgb(166, 0, 255)
+  );
 }
 
 .content-wrapper,
@@ -85,10 +91,15 @@ form {
 
 input,
 button {
-  padding: 0.5em 1.2em;
+  margin-right: 1em;
+  padding: 0.6em 1.2em;
+  background-color: white;
+  color: rgb(219, 167, 248);
+  border: 0;
   border-radius: 6px;
-  border: 2px solid transparent;
-  transition: all 0.2s ease;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .error {
@@ -96,7 +107,7 @@ button {
 }
 
 .success {
-  border-color: #a5d6a7;
+  border-color: rgb(219, 167, 248);;
 }
 
 input {
@@ -110,7 +121,7 @@ button {
 }
 
 button:not(:disabled) {
-  background-color: #64b5f6;
+  background-color: white;
 }
 
 h4 {
