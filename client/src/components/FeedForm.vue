@@ -1,19 +1,19 @@
 <template>
     <div>
-        <form>
-            <input
-            :class="isError ? 'error' : 'success'"
+        <form @submit.prevent="handleSubmit">
+            <input 
+            name="caption"
             type="text"
-            :value="URL"
-            placeholder="Enter URL"
-            @input="enterUsername"
+            :value="caption"
+            placeholder="Enter Caption"
+            @input="handleForm"
             />
         <input
-            :class="isError ? 'error' : 'success'"
+            name="image"
             type="text"
-            :value="comment"
-            placeholder="Enter Comment"
-            @input="enterUsername"
+            :value="image"
+            placeholder="Enter Image"
+            @input="handleForm"
             />
             <button type="submit">
             Blog
@@ -23,8 +23,33 @@
 </template>
 
 <script>
+import {CreatePost} from '../services/posts'
+
 export default {
-    name:"FeedForm"
+    name:"FeedForm",
+    data: () => ({
+        caption:'',
+        image:'',
+        likes: 2
+    }),
+    props:['user'],
+    methods:{
+        handleForm(e) {
+            // console.log(e.target.value)
+            if (e.target.name === "caption"){
+                this.caption = e.target.value
+            } else {
+                this.image = e.target.value
+            }
+            
+        },
+        async handleSubmit() {
+            const feedData = await CreatePost({'user_id':this.user.id, 'caption':this.caption, 'image':this.image, 'likes':this.likes})
+            this.$forceUpdate()
+            return feedData
+            
+        }
+    }
 }
 </script>
 
