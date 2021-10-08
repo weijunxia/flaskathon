@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 import Login from './components/Login.vue'
 import Feed from './components/Feed.vue'
 import {CreateUser, RemoveUser} from './services/users'
