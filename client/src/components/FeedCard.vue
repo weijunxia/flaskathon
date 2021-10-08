@@ -2,14 +2,14 @@
   <div class="feed_card">
     <div class="card_image">
       <img :src="image"/>
-      <button @click="deletePost(post_id)">X</button>
     </div>
     <div class="card_likes">
-      <p>❤️ {{likes}} likes</p>
+      <p class="likes">❤️ {{likes}} likes</p>
     </div>
     <div class="card_caption">
-      <p class="user_name">{{post_username}}</p>
-      <p>{{caption}}</p>
+      <p class="user_name">{{post_username}}:</p>
+      <p class="caption">{{caption}}</p>
+      <button class="del_btn" @click="deletePost(post_id)">Delete Post</button>
     </div>
   </div>
 
@@ -53,6 +53,7 @@ export default {
   max-width: 50vw;
   margin: 1em auto;
   cursor: pointer;
+  box-shadow: 7px 10px 24px 0px rgba(0, 0, 0, 0.39);
   transition: all .2s ease;
 }
 
@@ -68,5 +69,17 @@ export default {
   /* border-radius: 50%; */
 }
 
+
+.likes {
+  margin-top: 0em;
+}
+
+.user_name, .caption {
+  margin-left: 5px;
+}
+
+.del_btn {
+  width: 100%;
+}
 
 </style>
