@@ -23,6 +23,9 @@ export default {
 </script>
 
 <style scoped>
+body{
+  background: cornsilk;
+}
 
 .title {
   display: flex;
